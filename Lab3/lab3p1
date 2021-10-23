@@ -1,0 +1,38 @@
+package lab3;
+
+import java.util.Calendar;
+import java.util.TimerTask;
+
+
+
+public class ClockDriver extends TimerTask {
+	public void run() {System.out.println("hello world!");
+	
+	}
+	static Calendar cal = Calendar.getInstance ();		
+    static int count = 0;
+    static long mil = System.currentTimeMillis();
+		
+		public static void main (String args[])
+		{
+			Time t = new Time (cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
+			System.out.println(t.toString());
+			//System.out.println(t.tick();
+			System.out.print("Current time in milliseconds = ");
+			System.out.println(System.currentTimeMillis());
+			
+			
+			
+			long startTime = System.currentTimeMillis();
+			while (false||(System.currentTimeMillis()-startTime)<60000)
+			{
+				t.tick();
+				System.out.println(t.toString());
+				t.schedule(new Time(), 0, 1000);
+				
+			}
+			
+			
+	}
+
+}	
