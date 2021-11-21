@@ -1,0 +1,27 @@
+package Lab6;
+
+public class Teacher {
+	private String first;     
+    private String last;      
+    private String address;     
+    private int course;      
+
+    
+    public Teacher(String first, String last, String address, int course) {
+        this.first   = first;
+        this.last    = last;
+        this.address   = address;
+        this.course = course;
+    }
+
+    
+    public boolean less(Teacher b) {
+        Teacher a = this;
+        return a.course < b.course;
+    }
+
+    
+    public String toString() {
+        return course + " " + first + " " + last + " " + address;
+    }
+}
