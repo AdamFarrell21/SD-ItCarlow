@@ -1,0 +1,33 @@
+package Lab6;
+
+public class Student {
+	
+	    private String first;     
+	    private String last;      
+	    private String email;     
+	    private int CourseGrade;      
+
+	    
+	    public Student(String first, String last, String email, int CourseGrade) {
+	        this.first   = first;
+	        this.last    = last;
+	        this.email   = email;
+	        this.CourseGrade = CourseGrade;
+	    }
+
+	    
+	    public boolean less(Student b) {
+	        Student a = this;
+	        return a.CourseGrade < b.CourseGrade;
+	    }
+
+	    
+	    public String toString() {
+	        return CourseGrade + " " + first + " " + last + " " + email;
+	    }
+
+}
+
+	
+
+
