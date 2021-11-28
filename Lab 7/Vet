@@ -1,0 +1,17 @@
+package Lab7;
+
+public class Vet<Animal> {
+	
+
+	    private Animal a;
+
+		public void giveShot(Animal a)
+	    {
+	        this.a = a;
+			System.out.println("john is vaccinating Dog has been vaccinated " + a.getClass().getDog());
+			System.out.println("john is vaccinating Cat has been vaccinated " + a.getClass().getCat());
+	        
+	    }
+	}
+
+}
