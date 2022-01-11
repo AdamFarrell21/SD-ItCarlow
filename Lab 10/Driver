@@ -1,0 +1,16 @@
+package lab10;
+
+import javax.swing.JFrame;
+
+public class ChangeColourDriver2 {
+
+	public static void main(String[] args) {
+	
+		ChangeColour2 changeColour2 = new ChangeColour2("Button");
+		changeColour2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		changeColour2.setSize(200, 200);
+		changeColour2.setVisible(true);
+
+	}//end main
+
+}//end class
