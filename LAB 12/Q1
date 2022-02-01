@@ -1,0 +1,63 @@
+import javax.swing.*;  
+    public class Lab12  
+    {  
+         Lab12(){  
+            JFrame f= new JFrame("CheckBox Example");  
+            JCheckBox checkBox1 = new JCheckBox("Snap to Grid");  
+            checkBox1.setBounds(50,100, 100,50);  
+            JCheckBox checkBox2 = new JCheckBox("Show Grid ", true);  
+            checkBox2.setBounds(50,150, 100,50);  
+            f.add(checkBox1);  
+            f.add(checkBox2);  
+            f.setSize(400,400);  
+            f.setLayout(null);  
+            f.setVisible(true);  
+            
+		  
+		    JTextField t1,t2;  
+		    t1=new JTextField("8");  
+		    t1.setBounds(190,110,30,30);  
+		    t2=new JTextField("8");  
+		    t2.setBounds(190,160,30,30); 
+		    f.add(t1); f.add(t2); 
+		    f.setSize(1000,1000);  
+		    f.setLayout(null);  
+		    f.setVisible(true);
+		    
+		    JLabel l1,l2;  
+		    l1=new JLabel("X:");  
+		    l1.setBounds(165,110, 100,30);  
+		    l2=new JLabel("Y:");  
+		    l2.setBounds(165,160, 100,30);  
+		    f.add(l1); f.add(l2);  
+		    f.setSize(300,300);  
+		    f.setLayout(null);  
+		    f.setVisible(true);  
+		    
+		    JButton b=new JButton("Ok");  
+		    b.setBounds(250,100,95,30);  
+		    f.add(b);  
+		    f.setSize(400,400);  
+		    f.setLayout(null);  
+		    f.setVisible(true); 
+		    
+		    JButton c=new JButton("Cancel");  
+		    c.setBounds(250,140,95,30);  
+		    f.add(c);  
+		    f.setSize(400,400);  
+		    f.setLayout(null);  
+		    f.setVisible(true);   
+		    
+		       JButton d=new JButton("Help");  
+		    d.setBounds(250,180,95,30);  
+		    f.add(d);  
+		    f.setSize(400,400);  
+		    f.setLayout(null);  
+		    f.setVisible(true);     
+				      
+         }  
+    public static void main(String args[])  
+        {  
+        new Lab12();  
+        }
+     }  
