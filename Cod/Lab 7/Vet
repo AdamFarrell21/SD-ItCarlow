@@ -1,4 +1,4 @@
-package Lab7;
+package Lab07;
 
 public class Vet<Animal> {
 	
