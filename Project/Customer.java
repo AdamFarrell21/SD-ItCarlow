@@ -37,7 +37,7 @@ public class Customer extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Employeeinfo frame = new Employeeinfo();
+					Customer frame = new Customer();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
