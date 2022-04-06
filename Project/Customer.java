@@ -259,7 +259,7 @@ public class Customer extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					String query="delete from EmployeeInfo where EID='"+textFieldEID.getText()+"'";
+					String query="delete from Customer where CustomerID='"+textFieldEID.getText()+"'";
 					PreparedStatement pst = connection.prepareStatement(query);
 					
 					
