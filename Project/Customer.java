@@ -37,7 +37,7 @@ public class Customer extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Customer frame = new Customer();
+					Employeeinfo frame = new Employeeinfo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -293,8 +293,8 @@ public class Customer extends JFrame {
 			
 				try {
 				
-				Customer company = new Customer ();
-				company.setVisible(true);
+				Employeeinfo employee = new Employeeinfo ();
+				employee.setVisible(true);
 				
 				
 				
@@ -309,9 +309,39 @@ public class Customer extends JFrame {
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Product");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					
+					Product product = new Product ();
+					product.setVisible(true);
+					
+					
+					
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Invoice");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					
+					Product product = new Product ();
+					product.setVisible(true);
+					
+					
+					
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
 		JSeparator separator = new JSeparator();

@@ -62,12 +62,7 @@ public class Product extends JFrame {
 	private JTextField textFieldUsername;
 	private JLabel lblPassword;
 	private JTextField textFieldPassword;
-	private JTextField textField;
-	private JLabel lblGender;
-	private JTextField textField_1;
-	private JLabel lblAge_1;
-	private JLabel lblAge_2;
-	private JTextField textField_2;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -80,13 +75,13 @@ public class Product extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLoadTable = new JButton("Show Employee Table");
+		JButton btnLoadTable = new JButton("Show Product Table");
 		btnLoadTable.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnLoadTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-						String query="select CustomerID,email,firstName,lastName,address,country,phone,gender,age from Customer";
+						String query="select productID,productName,productBrand,Description,price,quantity from Product";
 						PreparedStatement pst = connection.prepareStatement(query);
 						ResultSet rs = pst.executeQuery();
 						table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -109,9 +104,9 @@ public class Product extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		lblEID = new JLabel("CustomerID");
+		lblEID = new JLabel("productID");
 		lblEID.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblEID.setBounds(652, 53, 89, 14);
+		lblEID.setBounds(652, 53, 89, 24);
 		contentPane.add(lblEID);
 		
 		textFieldEID = new JTextField();
@@ -124,14 +119,14 @@ public class Product extends JFrame {
 		textFieldName.setBounds(784, 88, 131, 29);
 		contentPane.add(textFieldName);
 		
-		lblName = new JLabel("Email");
+		lblName = new JLabel("productName");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblName.setBounds(652, 93, 46, 14);
+		lblName.setBounds(652, 93, 89, 24);
 		contentPane.add(lblName);
 		
-		lblSurname = new JLabel("firstName");
+		lblSurname = new JLabel("productBrand");
 		lblSurname.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSurname.setBounds(652, 133, 68, 14);
+		lblSurname.setBounds(652, 133, 89, 24);
 		contentPane.add(lblSurname);
 		
 		textFieldSurname = new JTextField();
@@ -144,12 +139,12 @@ public class Product extends JFrame {
 		textFieldAge.setBounds(784, 173, 131, 29);
 		contentPane.add(textFieldAge);
 		
-		lblAge = new JLabel("lastName");
+		lblAge = new JLabel("Decription");
 		lblAge.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblAge.setBounds(652, 176, 89, 19);
+		lblAge.setBounds(652, 176, 89, 26);
 		contentPane.add(lblAge);
 		
-		lblUsername = new JLabel("Address");
+		lblUsername = new JLabel("price");
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblUsername.setBounds(652, 215, 68, 24);
 		contentPane.add(lblUsername);
@@ -159,7 +154,7 @@ public class Product extends JFrame {
 		textFieldUsername.setBounds(784, 213, 131, 29);
 		contentPane.add(textFieldUsername);
 		
-		lblPassword = new JLabel("country");
+		lblPassword = new JLabel("quantity");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPassword.setBounds(652, 253, 68, 25);
 		contentPane.add(lblPassword);
@@ -169,43 +164,13 @@ public class Product extends JFrame {
 		textFieldPassword.setBounds(784, 253, 131, 29);
 		contentPane.add(textFieldPassword);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(784, 293, 131, 29);
-		contentPane.add(textField);
-		
-		lblGender = new JLabel("Phone");
-		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblGender.setBounds(652, 297, 68, 25);
-		contentPane.add(lblGender);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(784, 333, 131, 29);
-		contentPane.add(textField_1);
-		
-		lblAge_1 = new JLabel("Gender");
-		lblAge_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblAge_1.setBounds(652, 333, 68, 25);
-		contentPane.add(lblAge_1);
-		
-		lblAge_2 = new JLabel("Age");
-		lblAge_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblAge_2.setBounds(652, 369, 68, 24);
-		contentPane.add(lblAge_2);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(784, 373, 131, 29);
-		contentPane.add(textField_2);
-		
 		
 		btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					String query="insert into Product (CustomerID,email,firstName,lastName,address,country,phone,gender,age) values (?,?,?,?,?,?,?,?,?)";
+					String query="insert into Product (productID,productName,productBrand,Description,price,quantity) values (?,?,?,?,?,?)";
 					PreparedStatement pst = connection.prepareStatement(query);
 					pst.setString(1, textFieldEID.getText ());
 					pst.setString(2, textFieldName.getText ());
@@ -213,10 +178,7 @@ public class Product extends JFrame {
 					pst.setString(4, textFieldAge.getText ());
 					pst.setString(5, textFieldUsername.getText ());
 					pst.setString(6, textFieldPassword.getText ());
-					pst.setString(7, textField.getText ());
-					pst.setString(8, textField_1.getText ());
-					pst.setString(9, textField_2.getText ());
-					
+				
 					
 					pst.execute();
 					JOptionPane.showMessageDialog(null, "Data Saved");
@@ -237,7 +199,7 @@ public class Product extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					String query="Update Product set CustomerID = '"+textFieldEID.getText()+"' , email ='"+textFieldName.getText()+"' , firstName = '"+textFieldSurname.getText()+"' , lastName = '"+textFieldAge.getText()+"', address ='"+textFieldUsername.getText()+"' , country = '"+textFieldPassword.getText()+"' , phone = '"+textField.getText()+"', gender = '"+textField_1.getText()+"', age = '"+textField_2.getText()+"' where CustomerID = '"+textFieldEID.getText()+"' ";
+					String query="Update Product set productID = '"+textFieldEID.getText()+"' , productName ='"+textFieldName.getText()+"' , productBrand = '"+textFieldSurname.getText()+"' , Description = '"+textFieldAge.getText()+"', price ='"+textFieldUsername.getText()+"' , quantity = '"+textFieldPassword.getText()+"' where productID = '"+textFieldEID.getText()+"' ";
 					PreparedStatement pst = connection.prepareStatement(query);
 					
 					
@@ -259,7 +221,7 @@ public class Product extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					String query="delete from Produce where EID='"+textFieldEID.getText()+"'";
+					String query="delete from Produce where productID='"+textFieldEID.getText()+"'";
 					PreparedStatement pst = connection.prepareStatement(query);
 					
 					
@@ -293,7 +255,7 @@ public class Product extends JFrame {
 			
 				try {
 				
-				Employee employee = new Employee ();
+				Employeeinfo employee = new Employeeinfo ();
 				employee.setVisible(true);
 				
 				
@@ -308,10 +270,41 @@ public class Product extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Product");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Customer");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					
+					Customer customer = new Customer ();
+					customer.setVisible(true);
+					
+					
+					
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Invoice");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			try {
+					
+					Invoice invoice = new Invoice ();
+					invoice.setVisible(true);
+					
+					
+					
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
 		JSeparator separator = new JSeparator();

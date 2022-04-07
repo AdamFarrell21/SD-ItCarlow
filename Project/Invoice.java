@@ -18,8 +18,15 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Employeeinfo extends JFrame {
+public class Invoice extends JFrame {
+	
+	
 
+	/**
+	 * 
+	 */
+	
+	
 	private JPanel contentPane;
 	private JTable table;
 
@@ -30,7 +37,7 @@ public class Employeeinfo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Employeeinfo frame = new Employeeinfo();
+					Product frame = new Product();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +47,6 @@ public class Employeeinfo extends JFrame {
 	}
 	Connection connection=null;
 	private JTextField txtPasswordAndUsername;
-	private JLabel lblNewLabel;
 	private JLabel lblEID;
 	private JTextField textFieldEID;
 	private JTextField textFieldName;
@@ -52,29 +58,26 @@ public class Employeeinfo extends JFrame {
 	private JButton btnSave;
 	private JButton btnUpdate;
 	private JButton btnDelete;
-	private JLabel lblUsername;
-	private JTextField textFieldUsername;
-	private JLabel lblPassword;
-	private JTextField textFieldPassword;
+	
 	/**
 	 * Create the frame.
 	 */
-	public Employeeinfo() {
+	public Invoice() {
 		connection=sqliteConnection.dbConnector();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 620, 480);
+		setBounds(100, 100, 939, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLoadTable = new JButton("Show Employee Table");
+		JButton btnLoadTable = new JButton("Show Product Table");
 		btnLoadTable.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnLoadTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-						String query="select EID,name,surname,age from EmployeeInfo";
+						String query="select ID,customerID,productID,quantity from Invoice";
 						PreparedStatement pst = connection.prepareStatement(query);
 						ResultSet rs = pst.executeQuery();
 						table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -87,101 +90,68 @@ public class Employeeinfo extends JFrame {
 				
 			}
 		});
-		btnLoadTable.setBounds(10, 351, 175, 29);
+		btnLoadTable.setBounds(10, 407, 175, 29);
 		contentPane.add(btnLoadTable);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 34, 443, 306);
+		scrollPane.setBounds(10, 34, 632, 366);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		txtPasswordAndUsername = new JTextField();
-		txtPasswordAndUsername.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtPasswordAndUsername.setText("      Password and Username not shown Above for privacy reasons");
-		txtPasswordAndUsername.setBounds(186, 401, 408, 29);
-		contentPane.add(txtPasswordAndUsername);
-		txtPasswordAndUsername.setColumns(10);
-		
-		lblNewLabel = new JLabel("Note");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(134, 398, 68, 29);
-		contentPane.add(lblNewLabel);
-		
-		lblEID = new JLabel("EID");
+		lblEID = new JLabel("ID");
 		lblEID.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblEID.setBounds(485, 10, 46, 14);
+		lblEID.setBounds(652, 53, 89, 24);
 		contentPane.add(lblEID);
 		
 		textFieldEID = new JTextField();
-		textFieldEID.setBounds(463, 24, 131, 29);
+		textFieldEID.setBounds(784, 48, 131, 29);
 		contentPane.add(textFieldEID);
 		textFieldEID.setColumns(10);
 		
 		textFieldName = new JTextField();
 		textFieldName.setColumns(10);
-		textFieldName.setBounds(463, 78, 131, 29);
+		textFieldName.setBounds(784, 88, 131, 29);
 		contentPane.add(textFieldName);
 		
-		lblName = new JLabel("Name");
+		lblName = new JLabel("custoemrID");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblName.setBounds(485, 64, 46, 14);
+		lblName.setBounds(652, 93, 89, 24);
 		contentPane.add(lblName);
 		
-		lblSurname = new JLabel("Surname");
+		lblSurname = new JLabel("productID");
 		lblSurname.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSurname.setBounds(485, 118, 68, 14);
+		lblSurname.setBounds(652, 133, 89, 24);
 		contentPane.add(lblSurname);
 		
 		textFieldSurname = new JTextField();
 		textFieldSurname.setColumns(10);
-		textFieldSurname.setBounds(463, 133, 131, 29);
+		textFieldSurname.setBounds(784, 128, 131, 29);
 		contentPane.add(textFieldSurname);
 		
 		textFieldAge = new JTextField();
 		textFieldAge.setColumns(10);
-		textFieldAge.setBounds(463, 192, 131, 29);
+		textFieldAge.setBounds(784, 173, 131, 29);
 		contentPane.add(textFieldAge);
 		
-		lblAge = new JLabel("Age");
+		lblAge = new JLabel("quantity");
 		lblAge.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblAge.setBounds(485, 173, 46, 19);
+		lblAge.setBounds(652, 176, 89, 26);
 		contentPane.add(lblAge);
 		
-		lblUsername = new JLabel("Username");
-		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblUsername.setBounds(485, 232, 68, 14);
-		contentPane.add(lblUsername);
-		
-		textFieldUsername = new JTextField();
-		textFieldUsername.setColumns(10);
-		textFieldUsername.setBounds(463, 249, 131, 29);
-		contentPane.add(textFieldUsername);
-		
-		lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPassword.setBounds(485, 289, 68, 14);
-		contentPane.add(lblPassword);
-		
-		textFieldPassword = new JTextField();
-		textFieldPassword.setColumns(10);
-		textFieldPassword.setBounds(463, 311, 131, 29);
-		contentPane.add(textFieldPassword);
 		
 		btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					String query="insert into EmployeeInfo (EID,name,username,password,surname,age) values (?,?,?,?,?,?)";
+					String query="insert into Invoice (ID,customerID,productID,quantity) values (?,?,?,?)";
 					PreparedStatement pst = connection.prepareStatement(query);
 					pst.setString(1, textFieldEID.getText ());
 					pst.setString(2, textFieldName.getText ());
-					pst.setString(3, textFieldUsername.getText ());
-					pst.setString(4, textFieldPassword.getText ());
-					pst.setString(5, textFieldSurname.getText ());
-					pst.setString(6, textFieldAge.getText ());
+					pst.setString(3, textFieldSurname.getText ());
+					pst.setString(4, textFieldAge.getText ());
 					
 					
 					pst.execute();
@@ -195,7 +165,7 @@ public class Employeeinfo extends JFrame {
 				
 			}
 		});
-		btnSave.setBounds(200, 374, 89, 23);
+		btnSave.setBounds(467, 427, 89, 23);
 		contentPane.add(btnSave);
 		
 		btnUpdate = new JButton("Update");
@@ -203,7 +173,7 @@ public class Employeeinfo extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					String query="Update EmployeeInfo set EID = '"+textFieldEID.getText()+"' , name ='"+textFieldName.getText()+"' , surname = '"+textFieldSurname.getText()+"' , age = '"+textFieldAge.getText()+"' where EID = '"+textFieldEID.getText()+"' ";
+					String query="Update Invoice set ID = '"+textFieldEID.getText()+"' , customerID ='"+textFieldName.getText()+"' , productID = '"+textFieldSurname.getText()+"' , quantity = '"+textFieldAge.getText()+"' where ID = '"+textFieldEID.getText()+"' ";
 					PreparedStatement pst = connection.prepareStatement(query);
 					
 					
@@ -218,14 +188,14 @@ public class Employeeinfo extends JFrame {
 			}
 			}
 		});
-		btnUpdate.setBounds(327, 374, 89, 23);
+		btnUpdate.setBounds(596, 427, 89, 23);
 		contentPane.add(btnUpdate);
 		
 		btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					String query="delete from EmployeeInfo where EID='"+textFieldEID.getText()+"'";
+					String query="delete from Invoice where ID='"+textFieldEID.getText()+"'";
 					PreparedStatement pst = connection.prepareStatement(query);
 					
 					
@@ -240,11 +210,11 @@ public class Employeeinfo extends JFrame {
 				
 			}
 		});
-		btnDelete.setBounds(447, 374, 89, 23);
+		btnDelete.setBounds(734, 427, 89, 23);
 		contentPane.add(btnDelete);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 1, 443, 22);
+		menuBar.setBounds(0, 2, 923, 22);
 		contentPane.add(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("File");
@@ -253,14 +223,14 @@ public class Employeeinfo extends JFrame {
 		JMenu mnNewMenu_1 = new JMenu("Open");
 		mnNewMenu.add(mnNewMenu_1);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Customer");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Employee");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				try {
 				
-				Customer company = new Customer ();
-				company.setVisible(true);
+				Employeeinfo employee = new Employeeinfo ();
+				employee.setVisible(true);
 				
 				
 				
@@ -274,14 +244,14 @@ public class Employeeinfo extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Product");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Customer");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
 					
-					Product product = new Product ();
-					product.setVisible(true);
+					Customer customer = new Customer ();
+					customer.setVisible(true);
 					
 					
 					
@@ -292,20 +262,21 @@ public class Employeeinfo extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Invoice");
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Product");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				try {
+			try {
 					
-					Invoice invoice = new Invoice ();
-					invoice.setVisible(true);
+					Product product = new Product ();
+					product.setVisible(true);
 					
 					
 					
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+				
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
@@ -323,6 +294,9 @@ public class Employeeinfo extends JFrame {
 		
 		JSeparator separator_1 = new JSeparator();
 		mnNewMenu.add(separator_1);
+		
+		
+	
 		
 		
 	}
